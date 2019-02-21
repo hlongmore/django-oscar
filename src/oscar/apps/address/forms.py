@@ -1,3 +1,4 @@
+from dj_address.forms import AddressField
 from django import forms
 from django.conf import settings
 
@@ -8,6 +9,7 @@ UserAddress = get_model('address', 'useraddress')
 
 
 class AbstractAddressForm(forms.ModelForm):
+    address = AddressField()
 
     def __init__(self, *args, **kwargs):
         """

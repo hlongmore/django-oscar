@@ -1,3 +1,4 @@
+from dj_address.forms import AddressField
 from django import forms
 from django.contrib.auth.models import Permission
 from django.contrib.auth.password_validation import validate_password
@@ -129,6 +130,7 @@ class UserEmailForm(forms.Form):
 
 
 class PartnerAddressForm(forms.ModelForm):
+    address = AddressField()
     name = forms.CharField(
         required=False, max_length=128,
         label=pgettext_lazy(u"Partner's name", u"Name"))
