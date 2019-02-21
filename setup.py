@@ -89,6 +89,10 @@ setup(
     packages=find_packages('src'),
     include_package_data=True,
     install_requires=install_requires,
+    dependency_links=[
+        # My customization of django-address to avoid having name conflicts
+        'https://github.com/hlongmore/django-address/tarball/master#egg=django-address>=0.3.4',
+    ],
     extras_require={
         'docs': docs_requires,
         'test': test_requires,
