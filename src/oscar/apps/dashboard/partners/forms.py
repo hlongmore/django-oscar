@@ -134,6 +134,5 @@ class PartnerAddressForm(forms.ModelForm):
         label=pgettext_lazy(u"Partner's name", u"Name"))
 
     class Meta:
-        fields = ('name', 'line1', 'line2', 'line3', 'line4',
-                  'state', 'postcode', 'country')
+        fields = ('name', 'address')
         model = PartnerAddress
