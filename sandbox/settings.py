@@ -318,6 +318,8 @@ INSTALLED_APPS = [
 
     # For allowing dashboard access
     'apps.gateway',
+
+    'dj_address',
 ]
 
 # Add Oscar's custom auth backend so users can sign in using their email
@@ -366,6 +368,9 @@ HAYSTACK_CONNECTIONS = {
 #        'INCLUDE_SPELLING': True
 #    },
 #}
+
+# GOOGLE_API_KEY - Used for dj_address module
+GOOGLE_API_KEY =  os.environ.get('GOOGLE_API_KEY', '')
 
 # =============
 # Debug Toolbar
