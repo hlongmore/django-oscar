@@ -19,10 +19,9 @@ ALLOWED_HOSTS = [
 
 # This is needed for the hosted version of the sandbox
 ADMINS = (
-    ('David Winterbottom', 'david.winterbottom@gmail.com'),
-    ('Michael van Tellingen', 'michaelvantellingen@gmail.com'),
+    ('Henry Longmore', 'henry@longmore.org'),
 )
-EMAIL_SUBJECT_PREFIX = '[Oscar sandbox] '
+EMAIL_SUBJECT_PREFIX = '[Virtual Cafe] '
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MANAGERS = ADMINS
@@ -53,13 +52,13 @@ CACHES = {
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
 USE_TZ = True
-TIME_ZONE = 'Europe/London'
+TIME_ZONE = 'America/Denver'
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-gb'
+LANGUAGE_CODE = 'en-us'
 
 # Includes all languages that have >50% coverage in Transifex
 # Taken from Django's default setting for LANGUAGES
@@ -71,6 +70,7 @@ LANGUAGES = (
     ('da', gettext_noop('Danish')),
     ('de', gettext_noop('German')),
     ('en-gb', gettext_noop('British English')),
+    ('en-us', gettext_noop('US English')),
     ('el', gettext_noop('Greek')),
     ('es', gettext_noop('Spanish')),
     ('fi', gettext_noop('Finnish')),
@@ -387,11 +387,13 @@ from oscar.defaults import *
 # Meta
 # ====
 
-OSCAR_SHOP_TAGLINE = 'Sandbox'
+OSCAR_SHOP_NAME = 'RPS'
+OSCAR_SHOP_TAGLINE = 'Virtual Cafe'
 
 OSCAR_RECENTLY_VIEWED_PRODUCTS = 20
 OSCAR_ALLOW_ANON_CHECKOUT = True
 
+IR_DEFAULT_REPORT_RANGE_HOURS = 24
 
 # Order processing
 # ================
@@ -416,6 +418,19 @@ OSCAR_ORDER_STATUS_CASCADE = {
     'Being processed': 'Being processed',
     'Cancelled': 'Cancelled',
     'Complete': 'Shipped',
+}
+
+
+# Currency
+# ========
+OSCAR_CURRENCY_FORMAT = {
+    'USD': {
+        'currency_digits': False,
+        'format_type': "accounting",
+    },
+    'EUR': {
+        'format': u'#,##0\xa0¤',
+    }
 }
 
 # LESS/CSS
