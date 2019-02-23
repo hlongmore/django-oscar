@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('dj_address', '0002_auto_20160213_1726'),
-        ('address', '0006_auto_20181115_1953'),
+        ('address', '0005_regenerate_user_address_hashes'),
     ]
 
     operations = [
