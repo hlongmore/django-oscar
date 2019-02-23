@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('dj_address', '0002_auto_20160213_1726'),
-        ('order', '0007_auto_20181115_1953'),
+        ('order', '0005_update_email_length'),
     ]
 
     operations = [

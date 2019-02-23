@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('iso_3166_1_a2', models.CharField(max_length=2, primary_key=True, serialize=False, verbose_name='ISO 3166-1 alpha-2')),
                 ('iso_3166_1_a3', models.CharField(blank=True, max_length=3, verbose_name='ISO 3166-1 alpha-3')),
                 ('iso_3166_1_numeric', models.CharField(blank=True, max_length=3, verbose_name='ISO 3166-1 numeric')),
-                ('printable_name', models.CharField(db_index=True, max_length=128, verbose_name='Country name')),
+                ('printable_name', models.CharField(max_length=128, verbose_name='Country name')),
                 ('name', models.CharField(max_length=128, verbose_name='Official name')),
                 ('display_order', models.PositiveSmallIntegerField(db_index=True, default=0, help_text='Higher the number, higher the country in the list.', verbose_name='Display order')),
                 ('is_shipping_country', models.BooleanField(db_index=True, default=False, verbose_name='Is shipping country')),

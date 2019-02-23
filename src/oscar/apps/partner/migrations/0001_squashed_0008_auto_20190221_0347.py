@@ -110,14 +110,4 @@ class Migration(migrations.Migration):
             name='partner',
             options={'ordering': ('name', 'code'), 'permissions': (('dashboard_access', 'Can access dashboard'),), 'verbose_name': 'Fulfillment partner', 'verbose_name_plural': 'Fulfillment partners'},
         ),
-        migrations.AlterField(
-            model_name='partner',
-            name='name',
-            field=models.CharField(blank=True, db_index=True, max_length=128, verbose_name='Name'),
-        ),
-        migrations.AlterField(
-            model_name='stockalert',
-            name='date_created',
-            field=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Date Created'),
-        ),
     ]

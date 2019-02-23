@@ -12,7 +12,7 @@ import phonenumber_field.modelfields
 
 class Migration(migrations.Migration):
 
-    replaces = [('order', '0001_initial'), ('order', '0002_auto_20141007_2032'), ('order', '0003_auto_20150113_1629'), ('order', '0004_auto_20160111_1108'), ('order', '0005_update_email_length'), ('order', '0006_orderstatuschange'), ('order', '0007_auto_20181115_1953'), ('order', '0008_auto_20190221_0223'), ('order', '0009_auto_20190221_0313'), ('order', '0010_auto_20190221_0347')]
+    replaces = [('order', '0001_initial'), ('order', '0002_auto_20141007_2032'), ('order', '0003_auto_20150113_1629'), ('order', '0004_auto_20160111_1108'), ('order', '0005_update_email_length'), ('order', '0008_auto_20190221_0223'), ('order', '0009_auto_20190221_0313'), ('order', '0010_auto_20190221_0347')]
 
     initial = True
 
@@ -387,35 +387,19 @@ class Migration(migrations.Migration):
             name='guest_email',
             field=models.EmailField(blank=True, max_length=254, verbose_name='Guest email address'),
         ),
-        migrations.CreateModel(
-            name='OrderStatusChange',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('old_status', models.CharField(blank=True, max_length=100, verbose_name='Old Status')),
-                ('new_status', models.CharField(blank=True, max_length=100, verbose_name='New Status')),
-                ('date_created', models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Date Created')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='status_changes', to='order.Order', verbose_name='Order Status Changes')),
-            ],
-            options={
-                'verbose_name': 'Order Status Change',
-                'verbose_name_plural': 'Order Status Changes',
-                'ordering': ['-date_created'],
-                'abstract': False,
-            },
-        ),
         migrations.AlterField(
             model_name='communicationevent',
             name='date_created',
-            field=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Date'),
+            field=models.DateTimeField(auto_now_add=True, verbose_name='Date'),
         ),
         migrations.AlterField(
             model_name='paymentevent',
             name='date_created',
-            field=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Date created'),
+            field=models.DateTimeField(auto_now_add=True, verbose_name='Date created'),
         ),
         migrations.AlterField(
             model_name='shippingevent',
             name='date_created',
-            field=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Date Created'),
+            field=models.DateTimeField(auto_now_add=True, verbose_name='Date Created'),
         ),
     ]
