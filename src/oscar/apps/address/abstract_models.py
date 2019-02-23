@@ -4,8 +4,6 @@ from dj_address.models import AddressField
 from django.conf import settings
 from django.core import exceptions
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
-from django.utils.six.moves import filter
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import pgettext_lazy
 from phonenumber_field.modelfields import PhoneNumberField
@@ -14,7 +12,6 @@ from oscar.core.compat import AUTH_USER_MODEL
 from .utils import POSTCODES_REGEX, TITLE_CHOICES
 
 
-@python_2_unicode_compatible
 class AbstractAddress(models.Model):
     """
     Superclass address object
@@ -28,9 +25,7 @@ class AbstractAddress(models.Model):
         max_length=64, choices=TITLE_CHOICES, blank=True)
     first_name = models.CharField(_("First name"), max_length=255, blank=True)
     last_name = models.CharField(_("Last name"), max_length=255, blank=True)
-
     address = AddressField(on_delete=models.PROTECT)
-    unit_designator = models.CharField(max_length=32, null=True, blank=True)
 
     def __str__(self):
         return self.summary
@@ -129,7 +124,6 @@ class AbstractAddress(models.Model):
                 setattr(address_model, field_name, getattr(self, field_name))
 
 
-@python_2_unicode_compatible
 class AbstractCountry(models.Model):
     """
     International Organization for Standardization (ISO) 3166-1 Country list.
@@ -265,7 +259,7 @@ class AbstractUserAddress(AbstractShippingAddress):
     def save(self, *args, **kwargs):
         """ Ensure user has only one default each of shipping and billing address. """
         self._ensure_defaults_integrity()
-        super(AbstractUserAddress, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def _ensure_defaults_integrity(self):
         if self.is_default_for_shipping:
@@ -284,11 +278,6 @@ class AbstractUserAddress(AbstractShippingAddress):
         verbose_name = _("User address")
         verbose_name_plural = _("User addresses")
         ordering = ['-num_orders_as_shipping_address']
-
-    @property
-    @deprecated
-    def num_orders(self):
-        return self.num_orders_as_shipping_address
 
 
 class AbstractBillingAddress(AbstractAddress):

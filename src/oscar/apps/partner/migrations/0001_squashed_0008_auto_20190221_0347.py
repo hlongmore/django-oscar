@@ -46,7 +46,6 @@ class Migration(migrations.Migration):
                 ('last_name', models.CharField(blank=True, max_length=255, verbose_name='Last name')),
                 ('partner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='addresses', to='partner.Partner', verbose_name='Partner')),
                 ('address', dj_address.models.AddressField(on_delete=django.db.models.deletion.PROTECT, to='dj_address.Address')),
-                ('unit_designator', models.CharField(blank=True, max_length=32, null=True)),
             ],
             options={
                 'verbose_name_plural': 'Partner addresses',

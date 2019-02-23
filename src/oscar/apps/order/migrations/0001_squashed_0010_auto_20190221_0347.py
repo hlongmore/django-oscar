@@ -36,7 +36,6 @@ class Migration(migrations.Migration):
                 ('first_name', models.CharField(blank=True, max_length=255, verbose_name='First name')),
                 ('last_name', models.CharField(blank=True, max_length=255, verbose_name='Last name')),
                 ('address', dj_address.models.AddressField(on_delete=django.db.models.deletion.PROTECT, to='dj_address.Address')),
-                ('unit_designator', models.CharField(blank=True, max_length=32, null=True)),
             ],
             options={
                 'verbose_name_plural': 'Billing addresses',
@@ -233,7 +232,6 @@ class Migration(migrations.Migration):
                 ('phone_number', phonenumber_field.modelfields.PhoneNumberField(blank=True, help_text='In case we need to call you about your order', max_length=128, verbose_name='Phone number')),
                 ('notes', models.TextField(blank=True, help_text='Tell us anything we should know when delivering your order.', verbose_name='Instructions')),
                 ('address', dj_address.models.AddressField(on_delete=django.db.models.deletion.PROTECT, to='dj_address.Address')),
-                ('unit_designator', models.CharField(blank=True, max_length=32, null=True)),
             ],
             options={
                 'verbose_name_plural': 'Shipping addresses',
