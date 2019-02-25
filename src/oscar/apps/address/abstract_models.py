@@ -37,7 +37,7 @@ class AbstractAddress(models.Model):
 
     def clean(self):
         # Strip all whitespace for fields not managed by dj_address or choices.
-        for field in ['first_name', 'last_name', 'unit_designator']:
+        for field in ['first_name', 'last_name']:
             if self.__dict__[field]:
                 self.__dict__[field] = self.__dict__[field].strip()
 
@@ -91,13 +91,15 @@ class AbstractAddress(models.Model):
         address, so I'm breaking the way it used to work in favor of what it should do.
         """
         receipt_line = self.salutation
-        secondary_line = f'{self.unit_designator}' if self.unit_designator else ''
         address = self.address
+        secondary_line = f' #{address.subpremise}' if address.subpremise else ''
         locality = address.locality
         if locality:
             delivery_line = f'{address.street_number} {address.route}'
             if not delivery_line:
                 delivery_line = address.formatted.split(',')[0]
+            if delivery_line:
+                delivery_line += secondary_line
             state = locality.state
             locality_line = f'{locality.name} {state.code} {locality.postal_code}'
             country_line = state.country.printable_name if state.country.code != 'US' else ''
@@ -106,7 +108,7 @@ class AbstractAddress(models.Model):
             delivery_line = ''
             locality_line = ''
             country_line = address.raw
-        lines = [receipt_line, secondary_line, delivery_line, locality_line, country_line]
+        lines = [receipt_line, delivery_line, locality_line, country_line]
         return [line.upper() for line in lines if line]
 
     def populate_alternative_model(self, address_model):
