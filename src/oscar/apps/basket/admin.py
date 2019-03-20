@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from oscar.core.loading import get_model
+from oscar.core.loading import get_model, is_model_registered
 
 Line = get_model('basket', 'line')
 
@@ -27,6 +27,11 @@ class BasketAdmin(admin.ModelAdmin):
     inlines = [LineInline]
 
 
-admin.site.register(get_model('basket', 'basket'), BasketAdmin)
-admin.site.register(Line, LineAdmin)
-admin.site.register(get_model('basket', 'LineAttribute'))
+if not is_model_registered('basket','basket'):
+    admin.site.register(get_model('basket', 'BasketAdmin'))
+
+if not is_model_registered('basket', 'Line'):
+    admin.site.register(get_model('basket', 'Line'), 'LineAdmin')
+
+if not is_model_registered('basket', 'LineAttribute'):
+    admin.site.register(get_model('basket', 'LineAttribuute'))
